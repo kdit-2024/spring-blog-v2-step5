@@ -17,13 +17,12 @@ import shop.mtcoding.blog._core.errors.exception.Exception401;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
     private final HttpSession session;
 
     @GetMapping("/user/update-form")
     public String updateForm(HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        User user = userService.회원수정폼(sessionUser.getId());
+        User user = userService.회원조회(sessionUser.getId());
         request.setAttribute("user", user);
         return "user/update-form";
     }
